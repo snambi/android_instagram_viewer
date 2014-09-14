@@ -5,6 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="popular_photos_caption">Popular Photos</string>
-    <string name="caption_text">Default Caption Text</string>
+    <string name="caption_text">Caption</string>
+    <string name="tvUsername">username</string>
 
 </resources>
