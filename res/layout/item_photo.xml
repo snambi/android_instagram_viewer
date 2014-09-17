@@ -5,24 +5,65 @@
 
     <ImageView
         android:id="@+id/imgPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher" />
 
-    <TextView
-        android:id="@+id/tvCaption"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/imgPhoto"
+        android:layout_alignParentTop="true"
+        android:background="#CCFFFFFF" >
+
+        <ImageView
+            android:id="@+id/imgUserPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/photo_age" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imgUserPhoto"
+            android:text="@string/username" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imgUserPhoto"
+            android:layout_alignLeft="@+id/tvUsername"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@string/location"
+            android:textStyle="normal" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvBottomCaption"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#FFFFFF"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="@string/caption_text"
-        android:textStyle="normal" />
+        android:text="@string/caption_text" />
 
 </RelativeLayout>

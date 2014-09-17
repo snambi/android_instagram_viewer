@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -61,60 +62,35 @@ public class PhotosActivity extends Activity {
     			if( response !=null ){
     				JSONArray photosJSON = null;
     				
-    				try {
-						photosJSON = response.getJSONArray("data");
+						try {
+							photosJSON = response.getJSONArray("data");
+						} catch (JSONException e) {
+							//e.printStackTrace();
+							Log.e("ERROR", "Response doesn't contain data, please handle the situation");
+						}
 						
 						// clear any preveious data
 						photos.clear();
 						
 						for( int i=0; i < photosJSON.length() ; i++){
 							
-							JSONObject photoJson = photosJSON.getJSONObject(i);
-							
+							JSONObject photoJson = null;
 							InstagramPhoto photo = new InstagramPhoto();
-							
-							if( photoJson.getJSONObject("user") != null && 
-									photoJson.getJSONObject("user").getString("username") != null
-									){
-								photo.setUsername(photoJson.getJSONObject("user").getString("username"));
+							try {
+								photoJson = photosJSON.getJSONObject(i);
+								photo = JsonParserUtil.convertJsonToPhoto(photoJson);
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								Log.e("ERROR", "Unable to convert json to photo, please handle the situation");
+								photo.setCaption("error photo");
+								photo.setUsername("sorry");
 							}
-							
-							if( photoJson.getJSONObject("images") != null && 
-									photoJson.getJSONObject("images").getJSONObject("standard_resolution") != null ){
-								
-								if( photoJson.getJSONObject("images").getJSONObject("standard_resolution").getString("url") != null){
-									photo.setImageUrl( photoJson.getJSONObject("images")
-																.getJSONObject("standard_resolution")
-																.getString("url"));
-								}
-								
-								photo.setImageHeight( photoJson.getJSONObject("images")
-																.getJSONObject("standard_resolution")
-																.getInt("height"));
-
-							}
-							
-							
-							if( photoJson.getJSONObject("caption") != null &&
-									photoJson.getJSONObject("caption").getString("text") != null){
-								
-								photo.setCaption( photoJson.getJSONObject("caption").getString("text"));
-							}
-							
-							if( photoJson.getJSONObject("likes") != null ){
-								photo.setLikesCount(photoJson.getJSONObject("likes").getInt("count"));
-							}
-
 							//Log.i("INFO", photo.toString());
 							photos.add(photo);
 						}
 						
 						// notify the adapter about the data change
 						aAdapter.notifyDataSetChanged();
-						
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
     			}
     		}
     		

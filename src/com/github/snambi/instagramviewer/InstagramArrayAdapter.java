@@ -29,15 +29,19 @@ public class InstagramArrayAdapter extends ArrayAdapter<InstagramPhoto> {
 		}
 		
 		ImageView imgPhoto = (ImageView) convertView.findViewById(R.id.imgPhoto);
-		TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
+		TextView tvCaption = (TextView) convertView.findViewById(R.id.tvUsername);
+		TextView tvBottomCaption = (TextView) convertView.findViewById(R.id.tvBottomCaption);
 		
 		
 		imgPhoto.getLayoutParams().height = photo.getImageHeight();
 		imgPhoto.setImageResource(0);
 		
-		Picasso.with( getContext() ).load( photo.getImageUrl() ).into(imgPhoto);
+		Picasso.with( getContext() ).load( photo.getImageUrl() ).fit().centerCrop().into(imgPhoto);
+		
+		tvCaption.setText( photo.getUsername());
+		
 		String formattedText = "<b>" + photo.getUsername() + "</b> -- " + photo.getCaption();
-		tvCaption.setText( Html.fromHtml(formattedText));
+		tvBottomCaption.setText( Html.fromHtml(formattedText));
 		
 		return convertView;
 	}
