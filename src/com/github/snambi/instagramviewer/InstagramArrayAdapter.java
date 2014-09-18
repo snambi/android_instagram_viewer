@@ -38,7 +38,7 @@ public class InstagramArrayAdapter extends ArrayAdapter<InstagramPhoto> {
 		TextView tvLoc = (TextView) convertView.findViewById(R.id.tvLocation);
 		
 		//imgPhoto.getLayoutParams().height = parent.getLayoutParams().height;
-		imgPhoto.getLayoutParams().height = parent.getHeight();
+		imgPhoto.getLayoutParams().height = parent.getWidth();
 		imgPhoto.setImageResource(0);
 		imgPhoto.setAdjustViewBounds(true);
 		
