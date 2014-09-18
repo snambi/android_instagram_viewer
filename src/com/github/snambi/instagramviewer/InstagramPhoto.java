@@ -1,13 +1,19 @@
 package com.github.snambi.instagramviewer;
 
+import android.text.format.DateUtils;
+
 public class InstagramPhoto {
 	
 	private String username;
 	private String imageUrl;
 	private String userImageUrl;
+	private long createdTime;
 	private int imageHeight;
 	private String caption;
 	private int likesCount;
+	private double longitude;
+	private double lattitude;
+	private String locationName;
 	
 	public String getUsername() {
 		return username;
@@ -27,6 +33,12 @@ public class InstagramPhoto {
 	public void setUserImageUrl(String userImageUrl) {
 		this.userImageUrl = userImageUrl;
 	}
+	public long getCreatedTime() {
+		return createdTime;
+	}
+	public void setCreatedTime(long createdTime) {
+		this.createdTime = createdTime;
+	}
 	public int getImageHeight() {
 		return imageHeight;
 	}
@@ -44,6 +56,29 @@ public class InstagramPhoto {
 	}
 	public void setLikesCount(int likesCount) {
 		this.likesCount = likesCount;
+	}
+	
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	public double getLattitude() {
+		return lattitude;
+	}
+	public void setLattitude(double lattitude) {
+		this.lattitude = lattitude;
+	}
+	public String getLocationName() {
+		return locationName;
+	}
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
+	public String getRelativeCreateTime(){	
+		return DateUtils.getRelativeTimeSpanString(getCreatedTime() * 1000).toString();
+	
 	}
 	
 	@Override

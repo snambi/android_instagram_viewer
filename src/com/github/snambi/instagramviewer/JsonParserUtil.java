@@ -47,6 +47,35 @@ public class JsonParserUtil {
 			}
 			
 		}
+		
+		if( photoJson.has("created_time")){
+			String createdTimeStr = photoJson.getString("created_time");
+			// convert the string into long
+			long createdTime = Long.parseLong(createdTimeStr);
+			photo.setCreatedTime(createdTime);
+		}
+		
+		if( !photoJson.isNull("location")){
+			if( !photoJson.getJSONObject("location").isNull("longitude")){
+				Double longi = photoJson.getJSONObject("location").getDouble("longitude");
+				photo.setLongitude(longi);
+			}
+		}
+		
+		if( !photoJson.isNull("location")){
+			if( !photoJson.getJSONObject("location").isNull("lattitude")){
+				Double latti = photoJson.getJSONObject("location").getDouble("lattitude");
+				photo.setLongitude(latti);
+			}
+		}
+
+		if( !photoJson.isNull("location")){
+			if( !photoJson.getJSONObject("location").isNull("name")){
+				String name = photoJson.getJSONObject("location").getString("name");
+				photo.setLocationName(name);
+			}
+		}
+
 
 		return photo;
 	}

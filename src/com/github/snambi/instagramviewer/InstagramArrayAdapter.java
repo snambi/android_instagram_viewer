@@ -35,6 +35,7 @@ public class InstagramArrayAdapter extends ArrayAdapter<InstagramPhoto> {
 		TextView tvCaption = (TextView) convertView.findViewById(R.id.tvUsername);
 		TextView tvBottomCaption = (TextView) convertView.findViewById(R.id.tvBottomCaption);
 		TextView tvPhotoAge = (TextView) convertView.findViewById(R.id.tvAge);
+		TextView tvLoc = (TextView) convertView.findViewById(R.id.tvLocation);
 		
 		//imgPhoto.getLayoutParams().height = parent.getLayoutParams().height;
 		imgPhoto.getLayoutParams().height = parent.getHeight();
@@ -53,10 +54,28 @@ public class InstagramArrayAdapter extends ArrayAdapter<InstagramPhoto> {
 		Picasso.with( getContext()).load(photo.getUserImageUrl()).fit().centerInside().into(usrPhoto); 
 		
 		
-		tvCaption.setText( photo.getUsername());
+		String formattedUserName = "<b>"+ photo.getUsername() + "</b>";
+		tvCaption.setText( Html.fromHtml(formattedUserName));
 		
-		String formattedText = "<b>" + photo.getUsername() + "</b> -- " + photo.getCaption();
-		tvBottomCaption.setText( Html.fromHtml(formattedText));
+		String formattedCaption=null;
+		if( photo.getUsername() != null ){
+			formattedCaption = "<b>" + photo.getUsername() + "</b>";
+		}
+		if( photo.getCaption() != null ){
+			formattedCaption = formattedCaption + " -- " + photo.getCaption();
+		}
+		//String formattedText = "<b>" + photo.getUsername() + "</b> -- " + photo.getCaption();
+		tvBottomCaption.setText( Html.fromHtml(formattedCaption));
+		
+		String formattedAge = "<B>&#8986; " + photo.getRelativeCreateTime() + "</b>";
+		tvPhotoAge.setText( Html.fromHtml(formattedAge));
+		
+		if( photo.getLocationName() != null ){
+			String formattedLocation = "<B>" + photo.getLocationName() + "</B>";
+			tvLoc.setText(Html.fromHtml(formattedLocation));
+		}else{
+			tvLoc.setText("");
+		}
 		
 		return convertView;
 	}

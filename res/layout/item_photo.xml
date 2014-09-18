@@ -10,7 +10,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        
+        android:layout_margin="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         android:contentDescription="@string/app_name"
         android:scaleType="centerInside"
         android:src="@drawable/ic_launcher" />
@@ -50,7 +58,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imgUserPhoto"
-            android:text="@string/username" />
+            android:text="@string/username"
+            android:textColor="#2F5D80" />
 
         <TextView
             android:id="@+id/tvLocation"
