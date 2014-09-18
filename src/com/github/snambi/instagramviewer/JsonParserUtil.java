@@ -75,6 +75,13 @@ public class JsonParserUtil {
 				photo.setLocationName(name);
 			}
 		}
+		
+		if( !photoJson.isNull("comments")){
+			if( !photoJson.getJSONObject("comments").isNull("count")){
+				int count = photoJson.getJSONObject("comments").getInt("count");
+				photo.setCommentCount(count);
+			}
+		}
 
 
 		return photo;

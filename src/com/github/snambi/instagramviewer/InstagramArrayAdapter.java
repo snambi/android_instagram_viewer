@@ -58,11 +58,14 @@ public class InstagramArrayAdapter extends ArrayAdapter<InstagramPhoto> {
 		tvCaption.setText( Html.fromHtml(formattedUserName));
 		
 		String formattedCaption=null;
-		if( photo.getUsername() != null ){
-			formattedCaption = "<b>" + photo.getUsername() + "</b>";
+//		if( photo.getUsername() != null ){
+//			formattedCaption = "<b>" + photo.getUsername() + "</b>";
+//		}
+		if( photo.getLikesCount() >= 0 ){
+			formattedCaption =  "<span style=\"color: #FF1493;\"> <b> &#9829; " + photo.getLikesCount() + " likes </b></span> -- ";
 		}
 		if( photo.getCaption() != null ){
-			formattedCaption = formattedCaption + " -- " + photo.getCaption();
+			formattedCaption = formattedCaption + " " + photo.getCaption();
 		}
 		//String formattedText = "<b>" + photo.getUsername() + "</b> -- " + photo.getCaption();
 		tvBottomCaption.setText( Html.fromHtml(formattedCaption));

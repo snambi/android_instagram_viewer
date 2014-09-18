@@ -11,6 +11,7 @@ public class InstagramPhoto {
 	private int imageHeight;
 	private String caption;
 	private int likesCount;
+	private int commentCount;
 	private double longitude;
 	private double lattitude;
 	private String locationName;
@@ -57,7 +58,12 @@ public class InstagramPhoto {
 	public void setLikesCount(int likesCount) {
 		this.likesCount = likesCount;
 	}
-	
+	public int getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
 	public double getLongitude() {
 		return longitude;
 	}
