@@ -10,10 +10,13 @@ public class JsonParserUtil {
 		InstagramPhoto photo = new InstagramPhoto();
 		
 		// check json and properly build the object
-		if( !photoJson.isNull("user")  && 
-			!photoJson.getJSONObject("user").isNull("username") ){
-			
-			photo.setUsername(photoJson.getJSONObject("user").getString("username"));
+		if( !photoJson.isNull("user") ){
+			if( !photoJson.getJSONObject("user").isNull("username") ){			
+				photo.setUsername(photoJson.getJSONObject("user").getString("username"));
+			}
+			if( !photoJson.getJSONObject("user").isNull("profile_picture") ){			
+				photo.setUserImageUrl( photoJson.getJSONObject("user").getString("profile_picture"));
+			}
 		}
 		
 		if( !photoJson.isNull("images")  && 

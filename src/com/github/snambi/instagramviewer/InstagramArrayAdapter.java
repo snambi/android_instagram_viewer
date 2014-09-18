@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 public class InstagramArrayAdapter extends ArrayAdapter<InstagramPhoto> {
@@ -29,14 +31,27 @@ public class InstagramArrayAdapter extends ArrayAdapter<InstagramPhoto> {
 		}
 		
 		ImageView imgPhoto = (ImageView) convertView.findViewById(R.id.imgPhoto);
+		CircularImageView usrPhoto = (CircularImageView) convertView.findViewById(R.id.imgUserPhoto);
 		TextView tvCaption = (TextView) convertView.findViewById(R.id.tvUsername);
 		TextView tvBottomCaption = (TextView) convertView.findViewById(R.id.tvBottomCaption);
+		TextView tvPhotoAge = (TextView) convertView.findViewById(R.id.tvAge);
 		
-		
-		imgPhoto.getLayoutParams().height = photo.getImageHeight();
+		//imgPhoto.getLayoutParams().height = parent.getLayoutParams().height;
+		imgPhoto.getLayoutParams().height = parent.getHeight();
 		imgPhoto.setImageResource(0);
+		imgPhoto.setAdjustViewBounds(true);
 		
-		Picasso.with( getContext() ).load( photo.getImageUrl() ).fit().centerCrop().into(imgPhoto);
+		// get the dimensions of the view
+//		int height = parent.getHeight();
+//		int width = parent.getWidth();
+//		
+//		int imgH = imgPhoto.getHeight();
+//		int imgW = imgPhoto.getWidth();
+		
+		Log.i("INFO", photo.getImageUrl());
+		Picasso.with( getContext() ).load( photo.getImageUrl() ).fit().centerInside().into(imgPhoto);
+		Picasso.with( getContext()).load(photo.getUserImageUrl()).fit().centerInside().into(usrPhoto); 
+		
 		
 		tvCaption.setText( photo.getUsername());
 		
